@@ -19,4 +19,9 @@ export default {
   margin: 0;
   padding: 0;
 }
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+}
 </style>

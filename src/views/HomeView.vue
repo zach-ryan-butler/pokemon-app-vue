@@ -6,7 +6,6 @@
 
 <style lang="scss" scoped>
 .home {
-  background-color: $secondary-color;
-  color: $text-color;
+  @include viewContainer;
 }
 </style>
