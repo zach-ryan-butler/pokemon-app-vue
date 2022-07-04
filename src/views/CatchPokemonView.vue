@@ -1,32 +1,59 @@
 <template>
-  <div class="catch-pokemon-container">
-    <h1>This is a catch pokemon page</h1>
-    <ul>
-      <li v-for="pokemon in pokemon" :key="pokemon.id">
-        <p>{{ pokemon.name }}</p>
-        <p>{{ pokemon.id }}</p>
-      </li>
-    </ul>
+  <div class="catch-pokemon-grid">
+    <PokemonItem
+      v-for="pokemon in pokemonArray"
+      :key="pokemon.id"
+      :pokemon="pokemon"
+    />
   </div>
 </template>
 
 <script>
+// local components
+import PokemonItem from "@/components/PokemonItem.vue";
+
+// api functions
 import { getRandomPokemon } from "@/services/pokemonApi.js";
 
 export default {
+  components: {
+    PokemonItem,
+  },
   data() {
     return {
-      pokemon: [],
+      pokemonArray: [],
     };
   },
   created() {
-    getRandomPokemon().then((randomPokemon) => (this.pokemon = randomPokemon));
+    getRandomPokemon().then(
+      (randomPokemon) => (this.pokemonArray = randomPokemon)
+    );
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.catch-pokemon-container {
+.catch-pokemon-grid {
   @include viewContainer;
+  padding-top: 50px;
+  display: grid;
+}
+
+@media (min-width: 600px) {
+  .catch-pokemon-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .catch-pokemon-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .catch-pokemon-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 </style>
