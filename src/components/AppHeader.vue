@@ -40,6 +40,14 @@ export default {
     text-decoration: none;
     padding-right: 5px;
     font-size: 1.2rem;
+    border-radius: $border-radius;
+    padding: 0.5rem;
+    @include transition-ease;
+
+    &:hover {
+      color: $text-color;
+      background-color: $secondary-color;
+    }
   }
 }
 </style>

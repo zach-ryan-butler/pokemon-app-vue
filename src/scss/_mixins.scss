@@ -3,3 +3,7 @@
   min-height: calc(100vh - $header-height);
   margin: auto;
 }
+
+@mixin transition-ease {
+  transition: all 0.2s ease-in-out;
+}
