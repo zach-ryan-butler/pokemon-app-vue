@@ -19,7 +19,11 @@
         </div>
       </div>
       <button
-        class="pokemon-container_contents_button"
+        :class="
+          isDisabled
+            ? 'pokemon-container_contents_button--disabled'
+            : 'pokemon-container_contents_button'
+        "
         :disabled="isDisabled"
         @click="openModal(pokemon)"
       >
@@ -42,7 +46,7 @@ export default {
     openModal(pokemon) {
       console.log("clicked!", pokemon.name);
       this.modal = !this.modal;
-      console.log(this.modal);
+      console.log("modal open?", this.modal);
     },
   },
 };
@@ -53,6 +57,23 @@ export default {
   margin-bottom: 50px;
   display: flex;
   justify-content: center;
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-2px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  &:hover {
+    animation: bounce 0.2s;
+    animation-timing-function: linear;
+  }
 }
 
 .pokemon-container_contents {
@@ -96,8 +117,26 @@ export default {
 
   &_button {
     width: 100%;
-    padding: 0.5em;
+    padding: 0.6em;
     border: none;
+    border-radius: $border-radius;
+    background-color: $secondary-color;
+    color: $text-color;
+    box-shadow: 0 3px 2px -2px gray;
+    @include transition-ease;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $secondary-color-dark;
+    }
+  }
+
+  &_button--disabled {
+    width: 100%;
+    padding: 0.6em;
+    border: none;
+    border-radius: $border-radius;
+    @include transition-ease;
   }
 }
 </style>
